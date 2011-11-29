@@ -17,7 +17,8 @@ TODO Before Releasing:
 1. Better sample view files.
 1. Move methods in `app_controller.php` to an abstracted controller in the plugin.
 1. Move some of the settings to a config (global stuff, like softDeletable integration).
-1. Finish installation and usage instructions
+1. Finish installation and usage instructions.
+1. Write tests for behavior and such.
 
 Installation (WIP):
 -------------------
