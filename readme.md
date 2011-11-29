@@ -26,20 +26,20 @@ Installation (WIP):
 
 	a. Clone code from Github (https://github.com/DailyPath/Remarkable-Plugin);
 
-		`$ git clone git@github.com:DailyPath/Remarkable-Plugin.git /path/to/desired/plugin/directory`
+		$ git clone git@github.com:DailyPath/Remarkable-Plugin.git /path/to/desired/plugin/directory
 
 	b. Add as a submodule:
 		
-		`$ git submodule add git@github.com:DailyPath/Remarkable-Plugin.git /path/to/desired/plugin/directory`
-		`$ git submodule init`
+		$ git submodule add git@github.com:DailyPath/Remarkable-Plugin.git /path/to/desired/plugin/directory
+		$ git submodule init
 
 	c. Download and place it in your desired directory:
 
-		`https://github.com/DailyPath/Remarkable-Plugin/zipball/master`
+		https://github.com/DailyPath/Remarkable-Plugin/zipball/master
 
 1. Setup Remark table
 
-	`$ cake.php schema create Remarkable.remark`
+	`$ cake schema create Remarkable.remark`
 
 Usage Examples:
 ---------------
