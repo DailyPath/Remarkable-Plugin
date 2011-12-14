@@ -23,26 +23,37 @@
 $options = array_merge(array(
 	'fields' => array(
 		'title' => __("Title", true),
-		'content' => __("Content", true),
+		'content' => array(
+			'label' => __("Content", true),
+			'placeholder' => __("Content", true)
+		)
 	),
-	'submit' => __("Submit", true)
+	'submit' => __("Submit", true),
+	'wrapper_class' => null,
+	'url' => array('controller' => 'courses','action' => 'remark'),
 ), $options);
 
 ?>
-<div class="remarks form">
-<?php echo $this->Form->create($model, array('url' => array('controller' => 'courses','action' => 'remark')));?>
+<div class="remarks form<?php echo " " . $options['wrapper_class'] ?>">
+<?php echo $this->Form->create($model, array('url' => $options['url'], 'class' => 'remark nice'));?>
 	<?php
 		if (isset($options['fields']['title'])) {
-			echo $this->Form->input('title', array('type' => 'text','label' => $options['fields']['title'],'class' => 'span-9','div' => array('class' => 'clear')));
+			echo $this->Form->input('title', array('type' => 'text','label' => $options['fields']['title'],'class' => 'large'));
 		}
+	?>
+	<?php
 		if (isset($options['fields']['content'])) {
-			echo $this->Form->input('content', array('type' => 'textarea','label' => $options['fields']['content'],'class' => 'span-9','div' => array('class' => 'clear')));
+			echo $this->Form->input('content', array('type' => 'textarea','label' => $options['fields']['content']['label'],'placeholder' => $options['fields']['content']['placeholder'],'class' => 'large','rows' => 1,'cols' => 15));
 		}
+	?>
+	<?php
 		if (isset($options['fields']['parent_id'])) {
 			echo $this->Form->input('parent_id', array('type' => 'hidden','value' => $options['fields']['parent_id']));
 		}
+	?>
+	<?php
 		echo $this->Form->input('foreign_id', array('type' => 'hidden','value' => $foreign_id));
-		echo $this->Form->submit($options['submit'], array('div' => array('class' => 'clear')));
+		echo $this->Form->button($options['submit'], array('class' => 'pink button small radius'));
 	?>
 <?php echo $this->Form->end();?>
 </div>

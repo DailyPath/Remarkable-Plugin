@@ -50,7 +50,6 @@ class RemarkableBehavior extends ModelBehavior {
 				),
 			)
 		), (array) $settings);
-		
 		// Init the Remark model
 		if (empty($this->Remark)) {
 			$this->Remark = ClassRegistry::init($this->_settings[$Model->alias]['remarksModel']);
@@ -117,11 +116,10 @@ class RemarkableBehavior extends ModelBehavior {
 		$options = array_merge(array(
 			'contain' => array(
 				$this->_settings[$Model->alias]['authorModel'], 
-				'ParentRemark' => array('conditions' => array('ChildRemark.is_deleted !=' => 1)), 
+				'ParentRemark' => array('conditions' => array('ParentRemark.is_deleted !=' => 1)), 
 				'ChildRemark' => array('conditions' => array('ChildRemark.is_deleted !=' => 1))
 			)
 		), (array) $options);
-		
 		// Search on ID if $params is NOT an array and is numeric
 		if (!is_array($params) && is_numeric($params)) {
 			$options['conditions'] = array("{$this->Remark->alias}.id" => $params);
