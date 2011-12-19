@@ -22,10 +22,15 @@
 
 $options = array_merge(array(
 	'fields' => array(
-		'title' => __("Title", true),
+		'title' => array(
+			'label' => __("Title", true),
+			'placeholder' => __("Title", true)
+		),
 		'content' => array(
 			'label' => __("Content", true),
-			'placeholder' => __("Content", true)
+			'placeholder' => __("Content", true),
+			'rows' => 1,
+			'cols' => 15
 		)
 	),
 	'submit' => __("Submit", true),
@@ -38,12 +43,12 @@ $options = array_merge(array(
 <?php echo $this->Form->create($model, array('url' => $options['url'], 'class' => 'remark nice'));?>
 	<?php
 		if (isset($options['fields']['title'])) {
-			echo $this->Form->input('title', array('type' => 'text','label' => $options['fields']['title'],'class' => 'large'));
+			echo $this->Form->input('title', array('type' => 'text','label' => $options['fields']['title']['label'],'placeholder' => $options['fields']['title']['placeholder'],'class' => 'input-text large'));
 		}
 	?>
 	<?php
 		if (isset($options['fields']['content'])) {
-			echo $this->Form->input('content', array('type' => 'textarea','label' => $options['fields']['content']['label'],'placeholder' => $options['fields']['content']['placeholder'],'class' => 'large','rows' => 1,'cols' => 15));
+			echo $this->Form->input('content', array('type' => 'textarea','label' => $options['fields']['content']['label'],'placeholder' => $options['fields']['content']['placeholder'],'class' => 'large','rows' => $options['fields']['content']['rows'],'cols' => $options['fields']['content']['cols']));
 		}
 	?>
 	<?php

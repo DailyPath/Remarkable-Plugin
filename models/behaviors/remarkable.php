@@ -47,7 +47,7 @@ class RemarkableBehavior extends ModelBehavior {
 				'settings' => array(
 					'field' => 'is_deleted',
 					'field_date' => 'modified'
-				),
+				)
 			)
 		), (array) $settings);
 		// Init the Remark model
@@ -149,10 +149,27 @@ class RemarkableBehavior extends ModelBehavior {
 		$model = ($model) ? $model : $Model->alias;
 		$author_model = $this->_settings[$Model->alias]['authorModel'];
 		
+		$this->Remark->bindModel(array('belongsTo' => array(
+			$author_model => array(
+				'class' => $author_model,
+				'foreignKey' => 'user_id'
+			)
+		)));
+		
+		$this->Remark->ChildRemark->bindModel(array('belongsTo' => array(
+			$author_model => array(
+				'class' => $author_model,
+				'foreignKey' => 'user_id'
+			)
+		)));
+		
 		$options = array_merge(array(
 			'contain' => array(
 				$author_model, 
-				'ChildRemark' => array('conditions' => array('ChildRemark.is_deleted !=' => 1))
+				'ChildRemark' => array(
+					'conditions' => array('ChildRemark.is_deleted !=' => 1),
+					'User'
+				)
 			),
 			'limit' => 10,
 			'order' => "{$this->Remark->alias}.created DESC",
@@ -165,7 +182,8 @@ class RemarkableBehavior extends ModelBehavior {
 		
 		$remarks = $this->Remark->find('all', $options);
 		
-		// This next pieces is only relevant if retrieving ChildRemarks
+		// DPTODO (ben@dailypath.com): Left this commented out in case it's better for performance (shitty coders UNITE)
+		/* / This next pieces is only relevant if retrieving ChildRemarks
 		if (in_array('ChildRemark', $options['contain']) || !empty($options['contain']['ChildRemark'])) {
 			
 			// Extracted from top level authors already in memory
@@ -198,7 +216,7 @@ class RemarkableBehavior extends ModelBehavior {
 				}
 			}
 			
-		}
+		} */
 		
 		return $remarks;
 		
