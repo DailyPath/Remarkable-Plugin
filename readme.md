@@ -1,5 +1,5 @@
-Remarkable CakePHP Plugin
-=========================
+Remarkable CakePHP Plugin (work in progress, use at your own risk)
+==================================================================
 
 **Easily enable remarking on any Model Object.**
 
